@@ -1,6 +1,6 @@
 pipeline:
   image_to_quay:
-    image: quay.io/ukhomeofficedigital/docker-clamav-rest
+    image: quay.io/ukhomeofficedigital/drone-docker
     secrets:
       - docker_password
     environment:
@@ -15,7 +15,7 @@ pipeline:
       event: [ push, pull_request ]
 
   image_to_quay:
-    image: quay.io/ukhomeofficedigital/docker-clamav-rest
+    image: quay.io/ukhomeofficedigital/drone-docker
     secrets:
       - docker_password
     environment:
@@ -29,7 +29,7 @@ pipeline:
       event: [ push ]
 
   tagged_image_to_quay:
-    image: quay.io/ukhomeofficedigital/docker-clamav-rest
+    image: quay.io/ukhomeofficedigital/drone-docker
     secrets:
       - docker_password
     environment:
