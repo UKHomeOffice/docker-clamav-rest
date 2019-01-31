@@ -23,6 +23,40 @@ git tag v1.0.0
 git push origin v1.0.0
 ```
 
+## Local build
+To build local copy of quay.io/ukhomeofficedigital/docker-clamav-rest:1.0.0 run:
+```
+docker-compose build
+```
+
+## Run
+To start local copy of quay.io/ukhomeofficedigital/docker-clamav-rest:1.0.0 run:
+```
+docker-compose run -d
+```
+
+## Testing
+Run:
+```sh
+$ echo 'X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*' > virus
+$ curl -i -k -F "name=virus" -F "file=@./virus" http://localhost:8080/scan
+    HTTP/1.1 200 OK
+    Content-Type: text/plain;charset=ISO-8859-1
+    Content-Length: 22
+    Server: Jetty(8.1.15.v20140411)
+    
+    Everything ok : false
+
+$ echo test > notvirus
+$ curl -i -k -F "name=notvirus" -F "file=@./notvirus" http://localhost:8080/scan
+    HTTP/1.1 200 OK
+    Content-Type: text/plain;charset=ISO-8859-1
+    Content-Length: 21
+    Server: Jetty(8.1.15.v20140411)
+    
+    Everything ok : true
+```
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting
