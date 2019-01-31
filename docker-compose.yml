@@ -1,0 +1,15 @@
+version: '3'
+services:
+  clamav_api:
+    build: .
+    image: quay.io/ukhomeofficedigital/docker-clamav-rest:1.0.0
+    ports:
+      - "8080:8080"
+    environment:
+      - CLAMD_HOST=clamav
+    depends_on:
+      - clamav
+  clamav:
+    image: quay.io/ukhomeofficedigital/clamav:v1.6.1
+    ports:
+     - "3310:3310"
