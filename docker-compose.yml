@@ -9,7 +9,23 @@ services:
       - CLAMD_HOST=clamav
     depends_on:
       - clamav
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 32M
   clamav:
     image: quay.io/ukhomeofficedigital/clamav:v1.6.1
     ports:
      - "3310:3310"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 32M
